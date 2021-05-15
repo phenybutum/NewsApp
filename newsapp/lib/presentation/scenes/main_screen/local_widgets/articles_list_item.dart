@@ -38,7 +38,7 @@ class _ArticlesListItemState extends State<ArticlesListItem> {
               height: 300.h,
               width: 382.w,
               decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.3),
+                color: Colors.black.withOpacity(0.6),
               ),
             ),
             Padding(
