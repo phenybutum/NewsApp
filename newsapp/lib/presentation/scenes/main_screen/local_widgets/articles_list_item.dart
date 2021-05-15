@@ -3,41 +3,31 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:newsapp/data/entities/article/article_model.dart';
 
-class ArticleItem extends StatefulWidget {
+class ArticlesListItem extends StatefulWidget {
 
   final Article article;
 
-  const ArticleItem({Key key, this.article}) : super(key: key);
+  const ArticlesListItem({Key key, this.article}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _ArticleItemState();
+  State<StatefulWidget> createState() => _ArticlesListItemState();
 }
 
-class _ArticleItemState extends State<ArticleItem> {
+class _ArticlesListItemState extends State<ArticlesListItem> {
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 250.h,
+        height: 300.h,
         width: 382.w,
-        decoration: new BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black45,
-              blurRadius: 10,
-              spreadRadius: 5.0,
-            )
-          ],
-        ),
+
         child: Stack(
           children: [
             Container(
               decoration: BoxDecoration(
                 color: Colors.black,
-                borderRadius: BorderRadius.circular(10),
               ),
-              height: 250.h,
+              height: 300.h,
               width: 382.w,
               child: Image.network(
                 widget.article.urlToImage,
@@ -45,11 +35,10 @@ class _ArticleItemState extends State<ArticleItem> {
               ),
             ),
             Container(
-              height: 250.h,
+              height: 300.h,
               width: 382.w,
               decoration: BoxDecoration(
                 color: Colors.black.withOpacity(0.3),
-                borderRadius: BorderRadius.circular(10),
               ),
             ),
             Padding(
