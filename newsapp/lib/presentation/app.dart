@@ -11,7 +11,7 @@ class App extends StatelessWidget {
     return ScreenUtilInit(
       designSize: DesignConfig.size,
       allowFontScaling: true,
-      builder: () => MaterialApp(
+      builder: () => CupertinoApp(
         title: 'NewsApp',
         localizationsDelegates: _localizationsDelegates(context),
         supportedLocales: EasyLocalization.of(context).supportedLocales,
