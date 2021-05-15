@@ -1,0 +1,27 @@
+{
+  "overview": "Огляд",
+  "top_headlines": "Кращі заголовки",
+  "sources":"Джерела",
+  "search": "Пошук",
+  "favorites": "Улюблене",
+  "search_articles": "Пошук статей...",
+  "about_source": "Про ресурс:",
+  "remove_from_favorites": "Видалити з улюбленого",
+  "add_to_favorites": "Додати в улюблене",
+  "share": "Поділитись",
+
+  "categories": "Категорії",
+  "business": "бізнес",
+  "entertainment": "розваги",
+  "general": "головне",
+  "health": "здоров'я",
+  "science": "наука",
+  "sports": "спорт",
+  "technology": "технології",
+
+  "too_many_requests": "Занадто багато запитів. Спробуйте ще раз через декілька хвилин.",
+  "server_error.": "Помилка серверу.",
+  "empty_data.": "Нема даних.",
+  "invalid_format.": "Хибний формат даних.",
+  "something_goes_wrong.": "Щось пішло не так."
+}

@@ -1,0 +1,27 @@
+{
+  "overview": "Overview",
+  "top_headlines": "Top headlines",
+  "sources":"Sources",
+  "search": "Search",
+  "favorites": "Favourites",
+  "search_articles": "Search articles...",
+  "about_source": "About source:",
+  "remove_from_favorites": "Remove from favourites",
+  "add_to_favorites": "Add to favourites",
+  "share": "Share",
+
+  "categories": "Categories",
+  "business": "Business",
+  "entertainment": "Entertainment",
+  "general": "General",
+  "health": "Health",
+  "science": "Science",
+  "sports": "Sports",
+  "technology": "Technology",
+
+  "too_many_requests": "You made too many requests within a window of time and have been rate limited. Back off for a while.",
+  "server_error": "Server error.",
+  "empty_data": "Empty data.",
+  "invalid_format": "Data has invalid format.",
+  "something_goes_wrong.": "Something goes wrong."
+}
