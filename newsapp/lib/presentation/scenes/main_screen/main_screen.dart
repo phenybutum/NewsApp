@@ -5,6 +5,7 @@ import 'package:newsapp/presentation/helpers/scroll_behavior.dart';
 import 'package:newsapp/presentation/scenes/main_screen/local_widgets/articles_list.dart';
 import 'package:newsapp/presentation/scenes/main_screen/local_widgets/categories_list.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:newsapp/presentation/shared_widgets/neap_appbar.dart';
 import 'package:newsapp/presentation/styles/neap_colors.dart';
 
 class MainScreen extends StatefulWidget {
@@ -27,46 +28,9 @@ class _MainScreenState extends State<MainScreen> {
                         physics: BouncingScrollPhysics(
                             parent: AlwaysScrollableScrollPhysics()),
                         children: [
-                          Container(
-                            width: double.infinity,
-                            height: 120.h,
-                            decoration: BoxDecoration(
-                                color: NeapColors.gray,
-                                border: Border(
-                                    bottom: BorderSide(
-                                        color: Colors.grey, width: 0.3))),
-                            child: Padding(
-                              padding: EdgeInsets.only(top: 55.h, left: 15.w),
-                              child: Text(
-                                'overview'.tr(),
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 35.sp),
-                              ),
-                            ),
-                          ),
+                          NeapAppBar(label: 'overview'.tr()),
                           ArticlesList(),
-                          Container(
-                            width: double.infinity,
-                            height: 40.h,
-                            decoration: BoxDecoration(
-                                color: NeapColors.gray,
-                                border: Border(
-                                    top: BorderSide(
-                                        color: Colors.grey, width: 0.3),
-                                    bottom: BorderSide(
-                                        color: Colors.grey, width: 0.3))),
-                            child: Padding(
-                              padding: EdgeInsets.only(top: 15.h, left: 15.w),
-                              child: Text(
-                                'categories'.tr().toUpperCase(),
-                                style: TextStyle(
-                                    color: Colors.black54,
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 13.sp),
-                              ),
-                            ),
-                          ),
+                          categoriesHeader(),
                           CategoriesList(),
                           Container(
                             height: 40.h,
@@ -76,4 +40,24 @@ class _MainScreenState extends State<MainScreen> {
                       ),
                     )))));
   }
+
+  Widget categoriesHeader() => Container(
+        width: double.infinity,
+        height: 40.h,
+        decoration: BoxDecoration(
+            color: NeapColors.gray,
+            border: Border(
+                top: BorderSide(color: Colors.grey, width: 0.3),
+                bottom: BorderSide(color: Colors.grey, width: 0.3))),
+        child: Padding(
+          padding: EdgeInsets.only(top: 15.h, left: 15.w),
+          child: Text(
+            'categories'.tr().toUpperCase(),
+            style: TextStyle(
+                color: Colors.black54,
+                fontWeight: FontWeight.w400,
+                fontSize: 13.sp),
+          ),
+        ),
+      );
 }

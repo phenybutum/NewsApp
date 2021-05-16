@@ -23,5 +23,7 @@
   "server_error": "Server error.",
   "empty_data": "Empty data.",
   "invalid_format": "Data has invalid format.",
-  "something_goes_wrong.": "Something goes wrong."
+  "something_goes_wrong.": "Something goes wrong.",
+
+  "cancel": "Cancel"
 }
