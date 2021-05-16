@@ -31,7 +31,17 @@ class _MainScreenState extends State<MainScreen> {
                           NeapAppBar(label: 'overview'.tr()),
                           ArticlesList(),
                           categoriesHeader(),
-                          CategoriesList(),
+                          TextButtonsList(
+                            labels: [
+                              'business'.tr(),
+                              'entertainment'.tr(),
+                              'general'.tr(),
+                              'health'.tr(),
+                              'science'.tr(),
+                              'sports'.tr(),
+                              'technology'.tr(),
+                            ],
+                          ),
                           Container(
                             height: 40.h,
                             color: NeapColors.gray,
