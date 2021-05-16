@@ -41,7 +41,8 @@ class _ArticleItemsListState extends State<ArticleItemsList> {
     return Expanded(
       child: ListView.builder(
         shrinkWrap: true,
-        physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+        physics: ClampingScrollPhysics(),
+//        physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
         itemCount: widget.articles.length,
         itemBuilder: (BuildContext context, int index) => Column(
           children: [
