@@ -51,6 +51,8 @@ class _MainScreenState extends State<MainScreen> {
                     )))));
   }
 
+
+
   Widget categoriesHeader() => Container(
         width: double.infinity,
         height: 40.h,
