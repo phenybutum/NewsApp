@@ -50,7 +50,7 @@ class _ArticlesListItemState extends State<ArticlesListItem> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.article.source,
+                      widget.article.source ?? ' ',
                       style: TextStyle(color: Colors.white, fontSize: 15.sp, fontWeight: FontWeight.w300),
                     ),
                     Text(

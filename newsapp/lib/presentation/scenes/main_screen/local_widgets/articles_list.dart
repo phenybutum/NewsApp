@@ -6,17 +6,9 @@ import 'package:newsapp/presentation/shared_widgets/article_item.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ArticlesList extends StatefulWidget {
-  List<Article> articles = [
-    Article(
-        title: 'Hello1',
-        source: 'Darkness my old friend',
-        urlToImage:
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVeH1tNV_O5QLuWpO4kDZgSdLnXtYIn1DrJQ&usqp=CAU'),
-    Article(title: 'Hello2',
-        source: 'Darkness my old friend',
-        urlToImage:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVeH1tNV_O5QLuWpO4kDZgSdLnXtYIn1DrJQ&usqp=CAU')
-  ];
+  final List<Article> articles;
+
+  const ArticlesList({Key key, this.articles}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _ArticlesListState();

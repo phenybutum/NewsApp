@@ -26,15 +26,11 @@ class _CategoryOverviewScreenState extends State<CategoryOverviewScreen> {
     return CupertinoPageScaffold(
         navigationBar: CupertinoNavigationBar(
           backgroundColor: Colors.white,
-          leading: Row(
-            children: [
-              CupertinoNavigationBarBackButton(
-                onPressed: () => Navigator.of(context).pop(),
-                color: Colors.black87,
-              ),
-              Text('categories'.tr()),
-            ],
+          leading: CupertinoNavigationBarBackButton(
+            onPressed: () => Navigator.of(context).pop(),
+            color: Colors.black87,
           ),
+          middle: Text('categories'.tr()),
         ),
         child: SafeArea(
             child: Align(
