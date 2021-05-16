@@ -3,20 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:newsapp/presentation/styles/neap_colors.dart';
 
-class CategoryButton extends StatelessWidget {
+class TextedButton extends StatelessWidget {
   final String label;
 
-  const CategoryButton({Key key, this.label}) : super(key: key);
+  const TextedButton({Key key, this.label}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 40.h,
-      decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border(bottom: BorderSide(color: Colors.grey, width: 0.2))),
-      child: Padding(
-        padding: EdgeInsets.only(left: 15.w),
+    return Padding(
+      padding: EdgeInsets.only(left: 15.w),
+      child: Container(
+        height: 40.h,
+        decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border(bottom: BorderSide(color: Colors.grey, width: 0.2))),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
