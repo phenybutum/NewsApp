@@ -1,40 +1,47 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:newsapp/data/entities/article/article_model.dart';
 import 'package:newsapp/presentation/helpers/scroll_behavior.dart';
-import 'package:newsapp/presentation/scenes/main_screen/local_widgets/categories_list.dart';
 import 'package:newsapp/presentation/shared_widgets/article_items_list.dart';
-import 'package:newsapp/presentation/shared_widgets/neap_appbar.dart';
-import 'package:newsapp/presentation/styles/neap_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-class OverviewScreen extends StatefulWidget {
+class SourceOverviewScreen extends StatefulWidget {
+  final String sourceTitle;
+  final String sourceDescription;
+  final List<Article> articles;
+
+  const SourceOverviewScreen(
+      {Key key, this.sourceTitle, this.articles, this.sourceDescription})
+      : super(key: key);
+
   @override
-  State<StatefulWidget> createState() => _OverviewScreenState();
+  State<StatefulWidget> createState() => _SourceOverviewScreenState();
 }
 
-class _OverviewScreenState extends State<OverviewScreen> {
+class _SourceOverviewScreenState extends State<SourceOverviewScreen> {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
         navigationBar: CupertinoNavigationBar(
+          backgroundColor: Colors.white,
           leading: Row(
             children: [
               CupertinoNavigationBarBackButton(
                 onPressed: () => Navigator.of(context).pop(),
                 color: Colors.black87,
               ),
-              Text('Sources')
+              Text('sources'.tr()),
             ],
           ),
           trailing: CupertinoButton(
             padding: EdgeInsets.only(bottom: 1.h),
-            onPressed: () => print('hello'),
-              child: Icon(
-                CupertinoIcons.compass,
-                color: Colors.black87,
-                size: 30.sp,
-
+            onPressed: () => print('redirect to browser here'),
+            //TODO: 14-implement-open-in-browser-feature
+            child: Icon(
+              CupertinoIcons.compass,
+              color: Colors.black87,
+              size: 30.sp,
             ),
           ),
         ),
@@ -67,15 +74,14 @@ class _OverviewScreenState extends State<OverviewScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Source name here',
+            Text(widget.sourceTitle,
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 35.sp)),
             SizedBox(
               height: 30.h,
             ),
-            Text(
-                'Not so long but also not so short description of given source. Have a nice day!',
+            Text(widget.sourceDescription,
                 style:
-                    TextStyle(fontWeight: FontWeight.normal, fontSize: 18.sp)),
+                    TextStyle(fontWeight: FontWeight.normal, fontSize: 18.sp))
           ],
         ),
       ),
