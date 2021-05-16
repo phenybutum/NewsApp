@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:newsapp/presentation/helpers/scroll_behavior.dart';
 import 'package:newsapp/presentation/scenes/main_screen/local_widgets/categories_list.dart';
+import 'package:newsapp/presentation/scenes/overview_screen/overview_screen.dart';
 import 'package:newsapp/presentation/shared_widgets/neap_appbar.dart';
 import 'package:newsapp/presentation/styles/neap_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -34,7 +36,7 @@ class _SourcesScreenState extends State<SourcesScreen>{
                             'science'.tr(),
                             'sports'.tr(),
                             'technology'.tr(),
-                          ]),
+                          ], onButtonTap: redirectToOverview,),
                           Container(
                             height: 40.h,
                             color: NeapColors.gray,
@@ -43,5 +45,8 @@ class _SourcesScreenState extends State<SourcesScreen>{
                       ),
                     )))));
   }
+
+  void redirectToOverview() => Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) =>OverviewScreen()));
 
 }
