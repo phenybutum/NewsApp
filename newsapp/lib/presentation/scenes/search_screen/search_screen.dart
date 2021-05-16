@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:newsapp/presentation/helpers/scroll_behavior.dart';
 import 'package:newsapp/presentation/scenes/main_screen/local_widgets/articles_list.dart';
 import 'package:newsapp/presentation/scenes/search_screen/local_widgets/search_bar.dart';
+import 'package:newsapp/presentation/shared_widgets/article_items_list.dart';
 import 'package:newsapp/presentation/shared_widgets/neap_appbar.dart';
 import 'package:newsapp/presentation/styles/neap_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -55,27 +56,15 @@ class _SearchScreenState extends State<SearchScreen>
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
         child: SafeArea(
-            child: Align(
-                alignment: Alignment.center,
-                child: Container(
-                    color: Colors.white,
-                    child: ScrollConfiguration(
-                      behavior: MyBehavior(),
-                      child: ListView(
-                        physics: BouncingScrollPhysics(
-                            parent: AlwaysScrollableScrollPhysics()),
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(bottom: 15.h),
-                            child: appBar(),
-                          ),
-                          Container(
-                            height: 440.h,
-                            color: Colors.red,
-                          ),
-                        ],
-                      ),
-                    )))));
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(bottom: 15.h),
+                  child: appBar(),
+                ),
+                ArticleItemsList()
+              ],
+            )));
   }
 
   Widget appBar() {
