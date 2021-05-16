@@ -4,8 +4,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:newsapp/presentation/helpers/scroll_behavior.dart';
 import 'package:newsapp/presentation/scenes/main_screen/local_widgets/articles_list.dart';
 import 'package:newsapp/presentation/scenes/main_screen/local_widgets/categories_list.dart';
-import 'package:newsapp/presentation/scenes/main_screen/local_widgets/category_button.dart';
-import 'package:newsapp/presentation/shared_widgets/article_item.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:newsapp/presentation/styles/neap_colors.dart';
 
