@@ -8,6 +8,7 @@ import 'package:newsapp/data/entities/source/source_model.dart';
 class RESTNewsDataService implements NewsService {
   List<Article> headlines = List();
   List<Article> headlinesFromSource = List();
+  List<Article> headlinesFromCategory = List();
   final NewsAPI api;
 
   RESTNewsDataService(this.api);
@@ -24,9 +25,14 @@ class RESTNewsDataService implements NewsService {
   }
 
   @override
-  Future<List<Article>> getNewsByCategory() async {
-    // TODO: implement getNewsByCategory
-    throw UnimplementedError();
+  Future<List<Article>> getNewsByCategory(String category) async {
+    headlinesFromCategory.clear();
+    ArticlesListResponse artResp = await api.getHeadlinesFromCategory(category);
+    artResp.data.forEach((element) {
+      headlinesFromCategory
+          .add(ArticleResponseParser(articleResponse: element).parseArticle());
+    });
+    return headlinesFromCategory;
   }
 
   @override
@@ -37,6 +43,6 @@ class RESTNewsDataService implements NewsService {
       headlinesFromSource
           .add(ArticleResponseParser(articleResponse: element).parseArticle());
     });
-    return headlines;
+    return headlinesFromSource;
   }
 }

@@ -18,13 +18,16 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
     if (event is LoadNewsFromSource) {
       yield* _mapLoadNewsFromSource(event);
     }
-
+    if (event is LoadNewsFromCategory) {
+      yield* _mapLoadNewsFromCategory(event);
+    }
   }
 
   Stream<NewsState> _mapLoadNews(LoadCategories event) async* {
     final categoriesList = _repository.categoriesList();
     final headlines = await _newsRepository.getHeadlines();
-    yield MainScreenLoaded(categoriesList: categoriesList, headlines: headlines);
+    yield MainScreenLoaded(
+        categoriesList: categoriesList, headlines: headlines);
   }
 
   Stream<NewsState> _mapLoadNewsFromSource(LoadNewsFromSource event) async* {
@@ -32,5 +35,9 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
     yield SourceOverviewScreenLoaded(headlines: headlines);
   }
 
-
+  Stream<NewsState> _mapLoadNewsFromCategory(
+      LoadNewsFromCategory event) async* {
+    final headlines = await _newsRepository.getNewsByCategory(event.category);
+    yield CategoryOverviewScreenLoaded(headlines: headlines);
+  }
 }

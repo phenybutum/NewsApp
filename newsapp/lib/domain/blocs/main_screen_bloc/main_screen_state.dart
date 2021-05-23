@@ -33,9 +33,21 @@ class SourceOverviewScreenLoaded extends NewsState {
 
   SourceOverviewScreenLoaded({@required this.headlines});
 
-  SourceOverviewScreenLoaded copyWith(
-      {List<Article> headlines}) {
+  SourceOverviewScreenLoaded copyWith({List<Article> headlines}) {
     return SourceOverviewScreenLoaded(headlines: headlines ?? this.headlines);
+  }
+
+  @override
+  List<Object> get props => [headlines];
+}
+
+class CategoryOverviewScreenLoaded extends NewsState {
+  final List<Article> headlines;
+
+  CategoryOverviewScreenLoaded({@required this.headlines});
+
+  CategoryOverviewScreenLoaded copyWith({List<Article> headlines}) {
+    return CategoryOverviewScreenLoaded(headlines: headlines ?? this.headlines);
   }
 
   @override

@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:newsapp/data/entities/article/article_model.dart';
 
 class ArticleItem extends StatefulWidget {
-
   final Article article;
 
   const ArticleItem({Key key, this.article}) : super(key: key);
@@ -14,7 +13,6 @@ class ArticleItem extends StatefulWidget {
 }
 
 class _ArticleItemState extends State<ArticleItem> {
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,17 +31,22 @@ class _ArticleItemState extends State<ArticleItem> {
         child: Stack(
           children: [
             Container(
-              decoration: BoxDecoration(
-                color: Colors.black,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              height: 250.h,
-              width: 382.w,
-              child: Image.network(
-                widget.article.urlToImage,
-                fit: BoxFit.fitWidth,
-              ),
-            ),
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                height: 250.h,
+                width: 382.w,
+                child: widget.article.urlToImage != null
+                    ? Image.network(
+                        widget.article.urlToImage,
+                        fit: BoxFit.fitWidth,
+                      )
+                    : FittedBox(
+                        child:
+                            Image.asset('assets/images/news-default-image.png'),
+                        fit: BoxFit.fitWidth,
+                      )),
             Container(
               height: 250.h,
               width: 382.w,
@@ -62,11 +65,17 @@ class _ArticleItemState extends State<ArticleItem> {
                   children: [
                     Text(
                       widget.article.source,
-                      style: TextStyle(color: Colors.white, fontSize: 15.sp, fontWeight: FontWeight.w300),
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 15.sp,
+                          fontWeight: FontWeight.w300),
                     ),
                     Text(
                       widget.article.title,
-                      style: TextStyle(color: Colors.white, fontSize: 20.sp, fontWeight: FontWeight.w500),
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.w500),
                     ),
                   ],
                 ),

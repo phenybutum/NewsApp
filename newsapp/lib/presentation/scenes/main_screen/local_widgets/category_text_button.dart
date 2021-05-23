@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:newsapp/presentation/scenes/category_overview_screen/category_overview_screen.dart';
-import 'package:newsapp/presentation/styles/neap_colors.dart';
 
 class CategoryTextButton extends StatelessWidget {
   final String label;
@@ -13,8 +13,10 @@ class CategoryTextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => CategoryOverviewScreen(categoryTitle: this.label,))),
+      onTap: () => Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => CategoryOverviewScreen(
+                category: this.label,
+              ))),
       splashColor: Colors.black26.withOpacity(0.3),
       child: Padding(
         padding: EdgeInsets.only(left: 15.w),
@@ -22,12 +24,13 @@ class CategoryTextButton extends StatelessWidget {
           height: 40.h,
           decoration: BoxDecoration(
               color: Colors.white,
-              border: Border(bottom: BorderSide(color: Colors.grey, width: 0.2))),
+              border:
+                  Border(bottom: BorderSide(color: Colors.grey, width: 0.2))),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(label, style: TextStyle()),
+              Text(label.tr(), style: TextStyle()),
               Padding(
                 padding: EdgeInsets.only(right: 20.w),
                 child: Icon(

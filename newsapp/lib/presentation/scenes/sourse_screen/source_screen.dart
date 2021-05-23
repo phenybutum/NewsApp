@@ -29,7 +29,6 @@ class _SourcesScreenState extends State<SourcesScreen> {
       if (state is SourcesLoaded) {
         this.sources = state.sourcesList;
       }
-
         return CupertinoPageScaffold(
             child: SafeArea(
                 child: Align(

@@ -5,13 +5,13 @@ class MockCategoriesDataService implements CategoriesService {
   @override
   List<String> categoriesList() {
     return [
-      'business'.tr(),
-      'entertainment'.tr(),
-      'general'.tr(),
-      'health'.tr(),
-      'science'.tr(),
-      'sports'.tr(),
-      'technology'.tr(),
+      'business',
+      'entertainment',
+      'general',
+      'health',
+      'science',
+      'sports',
+      'technology',
     ];
   }
 }
