@@ -12,6 +12,7 @@ import 'package:newsapp/presentation/helpers/scroll_behavior.dart';
 import 'package:newsapp/presentation/shared_widgets/article_items_list.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SourceOverviewScreen extends StatefulWidget {
   final Source source;
@@ -56,8 +57,7 @@ class _SourceOverviewScreenState extends State<SourceOverviewScreen> {
                   ),
                   trailing: CupertinoButton(
                     padding: EdgeInsets.only(bottom: 1.h),
-                    onPressed: () => print('redirect to browser here'),
-                    //TODO: 14-implement-open-in-browser-feature
+                    onPressed: () async => await _launchURL(widget.source.url),
                     child: Icon(
                       CupertinoIcons.compass,
                       color: Colors.black87,
@@ -126,4 +126,8 @@ class _SourceOverviewScreenState extends State<SourceOverviewScreen> {
       ),
     );
   }
+
+  _launchURL(String url) async => await canLaunch(url)
+      ? await launch(url, forceWebView: true)
+      : throw 'Could not launch $url';
 }

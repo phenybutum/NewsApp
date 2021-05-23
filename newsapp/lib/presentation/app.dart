@@ -74,6 +74,7 @@ class App extends StatelessWidget {
           allowFontScaling: true,
           builder: () => CupertinoApp(
             title: 'NewsApp',
+            debugShowCheckedModeBanner: false,
             localizationsDelegates: _localizationsDelegates(context),
             supportedLocales: EasyLocalization.of(context).supportedLocales,
             locale: EasyLocalization.of(context).locale,

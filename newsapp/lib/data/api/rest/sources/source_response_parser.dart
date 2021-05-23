@@ -12,6 +12,7 @@ class SourceResponseParser {
       name: sourceResponse.name,
       id: sourceResponse.id,
       description: sourceResponse.description,
+      url: sourceResponse.url
     );
     return source;
   }
