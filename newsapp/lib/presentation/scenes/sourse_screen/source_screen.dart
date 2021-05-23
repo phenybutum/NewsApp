@@ -7,6 +7,7 @@ import 'package:newsapp/domain/blocs/sources_screen_bloc/source_screen_state.dar
 import 'package:newsapp/presentation/helpers/scroll_behavior.dart';
 import 'package:newsapp/presentation/scenes/main_screen/local_widgets/categories_list.dart';
 import 'package:newsapp/presentation/scenes/source_overview_screen/source_overview_screen.dart';
+import 'package:newsapp/presentation/scenes/sourse_screen/local_widgets/sources_list.dart';
 import 'package:newsapp/presentation/shared_widgets/neap_appbar.dart';
 import 'package:newsapp/presentation/styles/neap_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -42,9 +43,8 @@ class _SourcesScreenState extends State<SourcesScreen> {
                                 parent: AlwaysScrollableScrollPhysics()),
                             children: [
                               NeapAppBar(label: 'sources'.tr()),
-                              TextButtonsList(
-                                labels: formLabels(),
-                                onButtonTap: redirectToOverview,
+                              SourcesButtonsList(
+                                sources: this.sources,
                               ),
                               Container(
                                 height: 40.h,
@@ -56,15 +56,4 @@ class _SourcesScreenState extends State<SourcesScreen> {
 
     });
   }
-
-  List<String> formLabels() {
-    List<String> labels = List();
-    this.sources.forEach((element) {
-      labels.add(element.name);
-    });
-    return labels;
-  }
-
-  void redirectToOverview() => Navigator.of(context)
-      .push(MaterialPageRoute(builder: (context) => SourceOverviewScreen()));
 }

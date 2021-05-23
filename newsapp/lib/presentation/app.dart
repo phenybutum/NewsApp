@@ -48,8 +48,8 @@ class App extends StatelessWidget {
               RepositoryProvider.of<NavigationRepository>(context),
             ),
           ),
-          BlocProvider<MainScreenBloc>(
-            create: (context) => MainScreenBloc(
+          BlocProvider<NewsBloc>(
+            create: (context) => NewsBloc(
                 RepositoryProvider.of<CategoriesRepository>(context),
                 RepositoryProvider.of<NewsRepository>(context))
               ..add(LoadCategories()),
