@@ -43,8 +43,8 @@ class _CategoryOverviewScreenState extends State<CategoryOverviewScreen> {
             this.articles = state.headlines;
           }
           if (this.articles.isNotEmpty) {
-            return CupertinoPageScaffold(
-                navigationBar: CupertinoNavigationBar(
+            return Scaffold(
+                appBar: CupertinoNavigationBar(
                   backgroundColor: Colors.white,
                   leading: CupertinoNavigationBarBackButton(
                     onPressed: () => Navigator.of(context).pop(),
@@ -52,7 +52,7 @@ class _CategoryOverviewScreenState extends State<CategoryOverviewScreen> {
                   ),
                   middle: Text('categories'.tr()),
                 ),
-                child: SafeArea(
+                body: SafeArea(
                     child: Align(
                         alignment: Alignment.center,
                         child: Container(

@@ -42,8 +42,8 @@ class _SourceOverviewScreenState extends State<SourceOverviewScreen> {
             this.articles = state.headlines;
           }
           if (this.articles.isNotEmpty) {
-            return CupertinoPageScaffold(
-                navigationBar: CupertinoNavigationBar(
+            return Scaffold(
+                appBar: CupertinoNavigationBar(
                   backgroundColor: Colors.white,
                   leading: Row(
                     children: [
@@ -65,7 +65,7 @@ class _SourceOverviewScreenState extends State<SourceOverviewScreen> {
                     ),
                   ),
                 ),
-                child: SafeArea(
+                body: SafeArea(
                     child: Align(
                         alignment: Alignment.center,
                         child: Container(
