@@ -6,12 +6,17 @@ import 'package:newsapp/data/api/categories/mock_categories_data_service.dart';
 import 'package:newsapp/data/api/navigation/mock_navigation_data_service.dart';
 import 'package:newsapp/data/api/news/news_data_service.dart';
 import 'package:newsapp/data/api/rest/news/news_api.dart';
+import 'package:newsapp/data/api/rest/sources/source_api.dart';
+import 'package:newsapp/data/api/sources/sources_data_service.dart';
 import 'package:newsapp/domain/blocs/main_screen_bloc/main_screen_bloc.dart';
 import 'package:newsapp/domain/blocs/main_screen_bloc/main_screen_event.dart';
 import 'package:newsapp/domain/blocs/navigation_bloc/navigation_bloc.dart';
+import 'package:newsapp/domain/blocs/sources_screen_bloc/source_screen_bloc.dart';
+import 'package:newsapp/domain/blocs/sources_screen_bloc/source_screen_event.dart';
 import 'package:newsapp/domain/repositories/categories_repository.dart';
 import 'package:newsapp/domain/repositories/navigation_repository.dart';
 import 'package:newsapp/domain/repositories/news_repository.dart';
+import 'package:newsapp/domain/repositories/sources_repository.dart';
 import 'package:newsapp/presentation/scenes/tabs_screen/tabs_screen.dart';
 import 'package:newsapp/presentation/styles/design_config.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -32,6 +37,9 @@ class App extends StatelessWidget {
         RepositoryProvider<NewsRepository>(
             create: (context) =>
                 NewsRepository(RESTNewsDataService(NewsAPI(baseApiEndpoint)))),
+        RepositoryProvider<SourcesRepository>(
+            create: (context) => SourcesRepository(
+                RESTSourcesDataService(SourcesAPI(baseApiEndpoint)))),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -39,11 +47,17 @@ class App extends StatelessWidget {
             create: (context) => NavigationBloc(
               RepositoryProvider.of<NavigationRepository>(context),
             ),
-          ),BlocProvider<MainScreenBloc>(
-            create: (context) => MainScreenBloc(
-              RepositoryProvider.of<CategoriesRepository>(context),
-              RepositoryProvider.of<NewsRepository>(context)
-            )..add(LoadCategories()),
+          ),
+          BlocProvider<NewsBloc>(
+            create: (context) => NewsBloc(
+                RepositoryProvider.of<CategoriesRepository>(context),
+                RepositoryProvider.of<NewsRepository>(context))
+              ..add(LoadCategories()),
+          ),
+          BlocProvider<SourcesScreenBloc>(
+            create: (context) => SourcesScreenBloc(
+                RepositoryProvider.of<SourcesRepository>(context))
+              ..add(LoadSources()),
           ),
         ],
         child: ScreenUtilInit(

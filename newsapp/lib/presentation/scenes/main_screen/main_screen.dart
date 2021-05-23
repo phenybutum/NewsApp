@@ -22,7 +22,7 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MainScreenBloc, MainScreenState>(
+    return BlocBuilder<NewsBloc, NewsState>(
         builder: (context, state) {
       if (state is MainScreenLoaded) {
         return CupertinoPageScaffold(

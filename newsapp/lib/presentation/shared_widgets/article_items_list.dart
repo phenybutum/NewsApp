@@ -6,23 +6,9 @@ import 'package:newsapp/presentation/shared_widgets/article_item.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ArticleItemsList extends StatefulWidget {
-  final List<Article> articles = [
-    Article(
-        title: 'Hello1',
-        source: 'Darkness my old friend',
-        urlToImage:
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVeH1tNV_O5QLuWpO4kDZgSdLnXtYIn1DrJQ&usqp=CAU'),
-    Article(
-        title: 'Hello2',
-        source: 'Darkness my old friend',
-        urlToImage:
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVeH1tNV_O5QLuWpO4kDZgSdLnXtYIn1DrJQ&usqp=CAU'),
-    Article(
-        title: 'Hello2',
-        source: 'Darkness my old friend',
-        urlToImage:
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVeH1tNV_O5QLuWpO4kDZgSdLnXtYIn1DrJQ&usqp=CAU')
-  ];
+  final List<Article> articles;
+
+  const ArticleItemsList({Key key, this.articles}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _ArticleItemsListState();
@@ -38,23 +24,27 @@ class _ArticleItemsListState extends State<ArticleItemsList> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.builder(
-        shrinkWrap: true,
-        physics: ClampingScrollPhysics(),
-        itemCount: widget.articles.length,
-        itemBuilder: (BuildContext context, int index) => Column(
-          children: [
-            SizedBox(height: 15.h,),
-            Padding(
-              padding: EdgeInsets.only(left: 20.w, right:  20.w,),
-              child: ArticleItem(
-                article: widget.articles[index],
+    if (widget.articles.isNotEmpty) {
+      return Expanded(
+        child: ListView.builder(
+          shrinkWrap: true,
+          physics: ClampingScrollPhysics(),
+          itemCount: widget.articles.length,
+          itemBuilder: (BuildContext context, int index) => Column(
+            children: [
+              SizedBox(height: 15.h,),
+              Padding(
+                padding: EdgeInsets.only(left: 20.w, right:  20.w,),
+                child: ArticleItem(
+                  article: widget.articles[index],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    } else {
+      return Container();
+    }
   }
 }
