@@ -7,6 +7,7 @@ import 'dart:developer' as developer;
 import 'package:newsapp/data/api/rest/responses/article/articles_list_response.dart';
 
 const _headlines = 'top-headlines/';
+const _everything = 'everything/';
 
 class NewsAPI extends BaseRestApi {
   NewsAPI(String baseApiEndPoint) : super(baseApiEndPoint);
@@ -46,6 +47,18 @@ class NewsAPI extends BaseRestApi {
       developer.log('Failed to load headlines from category');
       throw APIException(
           errorMessageFrom(e, "Failed to load headlines from category"));
+    }
+  }
+
+  Future<ArticlesListResponse> searchNews(String query) async {
+    Map<String, dynamic> body = {'q': query};
+    try {
+      var response = await dio.get(_everything, queryParameters: body);
+      return ResponseParser<ArticlesListResponse>()
+          .parseItem(response, (json) => ArticlesListResponse.fromJSON(json));
+    } on DioError catch (e) {
+      developer.log('Failed to find news');
+      throw APIException(errorMessageFrom(e, "Failed to find news"));
     }
   }
 }

@@ -10,6 +10,7 @@ class NewsRepository {
   Future<List<Article>> getHeadlines() => _service.getHeadlines();
   Future<List<Article>> getNewsByCategory(String category) => _service.getNewsByCategory(category);
   Future<List<Article>> getNewsFromSource(Source source) => _service.getNewsFromSource(source);
+  Future<List<Article>> searchNews(String query) => _service.searchNews(query);
 
 
 }

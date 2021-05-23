@@ -9,6 +9,7 @@ class RESTNewsDataService implements NewsService {
   List<Article> headlines = List();
   List<Article> headlinesFromSource = List();
   List<Article> headlinesFromCategory = List();
+  List<Article> searchResults = List();
   final NewsAPI api;
 
   RESTNewsDataService(this.api);
@@ -44,5 +45,16 @@ class RESTNewsDataService implements NewsService {
           .add(ArticleResponseParser(articleResponse: element).parseArticle());
     });
     return headlinesFromSource;
+  }
+
+  @override
+  Future<List<Article>> searchNews(String query) async {
+    searchResults.clear();
+    ArticlesListResponse artResp = await api.searchNews(query);
+    artResp.data.forEach((element) {
+      searchResults
+          .add(ArticleResponseParser(articleResponse: element).parseArticle());
+    });
+    return searchResults;
   }
 }
