@@ -1,18 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:newsapp/data/entities/article/article_model.dart';
+import 'package:newsapp/data/entities/source/source_model.dart';
 import 'package:newsapp/presentation/helpers/scroll_behavior.dart';
 import 'package:newsapp/presentation/shared_widgets/article_items_list.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class SourceOverviewScreen extends StatefulWidget {
-  final String sourceTitle;
-  final String sourceDescription;
-  final List<Article> articles;
+  final Source source;
 
   const SourceOverviewScreen(
-      {Key key, this.sourceTitle, this.articles, this.sourceDescription})
+      {Key key, this.source})
       : super(key: key);
 
   @override
@@ -20,6 +19,8 @@ class SourceOverviewScreen extends StatefulWidget {
 }
 
 class _SourceOverviewScreenState extends State<SourceOverviewScreen> {
+  List<Article> articles;
+
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
@@ -74,12 +75,12 @@ class _SourceOverviewScreenState extends State<SourceOverviewScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(widget.sourceTitle,
+            Text(widget.source.name,
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 35.sp)),
             SizedBox(
               height: 30.h,
             ),
-            Text(widget.sourceDescription,
+            Text(widget.source.description,
                 style:
                     TextStyle(fontWeight: FontWeight.normal, fontSize: 18.sp))
           ],
