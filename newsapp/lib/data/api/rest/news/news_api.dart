@@ -31,9 +31,21 @@ class NewsAPI extends BaseRestApi {
           .parseItem(response, (json) => ArticlesListResponse.fromJSON(json));
     } on DioError catch (e) {
       developer.log('Failed to load headlines from source');
-      throw APIException(errorMessageFrom(e, "Failed to load headlines from source"));
+      throw APIException(
+          errorMessageFrom(e, "Failed to load headlines from source"));
     }
   }
 
-
+  Future<ArticlesListResponse> getHeadlinesFromCategory(String category) async {
+    Map<String, dynamic> body = {'category': category};
+    try {
+      var response = await dio.get(_headlines, queryParameters: body);
+      return ResponseParser<ArticlesListResponse>()
+          .parseItem(response, (json) => ArticlesListResponse.fromJSON(json));
+    } on DioError catch (e) {
+      developer.log('Failed to load headlines from category');
+      throw APIException(
+          errorMessageFrom(e, "Failed to load headlines from category"));
+    }
+  }
 }

@@ -18,3 +18,12 @@ class LoadNewsFromSource extends NewsEvent {
   @override
   List<Object> get props => [source];
 }
+
+class LoadNewsFromCategory extends NewsEvent {
+  final String category;
+
+  LoadNewsFromCategory(this.category);
+
+  @override
+  List<Object> get props => [category];
+}
