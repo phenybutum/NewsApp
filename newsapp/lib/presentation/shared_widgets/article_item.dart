@@ -54,7 +54,7 @@ class _ArticleItemState extends State<ArticleItem> {
               height: 250.h,
               width: 382.w,
               decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.3),
+                color: Colors.black.withOpacity(0.4),
                 borderRadius: BorderRadius.circular(10),
               ),
             ),

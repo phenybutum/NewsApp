@@ -11,6 +11,7 @@ import 'package:newsapp/data/api/sources/sources_data_service.dart';
 import 'package:newsapp/domain/blocs/main_screen_bloc/main_screen_bloc.dart';
 import 'package:newsapp/domain/blocs/main_screen_bloc/main_screen_event.dart';
 import 'package:newsapp/domain/blocs/navigation_bloc/navigation_bloc.dart';
+import 'package:newsapp/domain/blocs/search_screen_bloc/search_bloc.dart';
 import 'package:newsapp/domain/blocs/sources_screen_bloc/source_screen_bloc.dart';
 import 'package:newsapp/domain/blocs/sources_screen_bloc/source_screen_event.dart';
 import 'package:newsapp/domain/repositories/categories_repository.dart';
@@ -59,6 +60,9 @@ class App extends StatelessWidget {
                 RepositoryProvider.of<SourcesRepository>(context))
               ..add(LoadSources()),
           ),
+          BlocProvider<SearchBloc>(
+              create: (context) =>
+                  SearchBloc(RepositoryProvider.of<NewsRepository>(context))),
         ],
         child: ScreenUtilInit(
           designSize: DesignConfig.size,

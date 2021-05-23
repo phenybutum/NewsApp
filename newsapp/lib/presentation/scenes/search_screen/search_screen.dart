@@ -1,5 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:newsapp/data/entities/article/article_model.dart';
+import 'package:newsapp/domain/blocs/search_screen_bloc/search_bloc.dart';
+import 'package:newsapp/domain/blocs/search_screen_bloc/search_event.dart';
+import 'package:newsapp/domain/blocs/search_screen_bloc/search_state.dart';
 import 'package:newsapp/presentation/helpers/scroll_behavior.dart';
 import 'package:newsapp/presentation/scenes/main_screen/local_widgets/articles_list.dart';
 import 'package:newsapp/presentation/scenes/search_screen/local_widgets/search_bar.dart';
@@ -18,6 +23,7 @@ class _SearchScreenState extends State<SearchScreen>
     with SingleTickerProviderStateMixin {
   _SearchScreenState();
 
+  List<Article> searchResults = List();
   TextEditingController _searchTextController = new TextEditingController();
   FocusNode _searchFocusNode = new FocusNode();
   Animation _animation;
@@ -54,17 +60,36 @@ class _SearchScreenState extends State<SearchScreen>
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-        child: SafeArea(
-            child: Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(bottom: 15.h),
-                  child: appBar(),
-                ),
-                ArticleItemsList()
-              ],
-            )));
+    return BlocBuilder<SearchBloc, SearchState>(builder: (context, state) {
+      if (state is NewsFound) {
+        this.searchResults = state.articles;
+      }
+      if (this.searchResults.isNotEmpty) {
+        return CupertinoPageScaffold(
+            child: SafeArea(
+                child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.only(bottom: 15.h),
+              child: appBar(),
+            ),
+            ArticleItemsList(articles: this.searchResults)
+          ],
+        )));
+      } else {
+        return CupertinoPageScaffold(
+            child: SafeArea(
+                child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.only(bottom: 15.h),
+              child: appBar(),
+            ),
+            Container()
+          ],
+        )));
+      }
+    });
   }
 
   Widget appBar() {
@@ -91,8 +116,13 @@ class _SearchScreenState extends State<SearchScreen>
           animation: _animation,
           onCancel: _cancelSearch,
           onClear: _clearSearch,
+          onSubmit: onSubmit,
         ),
       ],
     );
+  }
+
+  void onSubmit(String query) {
+    BlocProvider.of<SearchBloc>(context).add(SearchNews(query));
   }
 }

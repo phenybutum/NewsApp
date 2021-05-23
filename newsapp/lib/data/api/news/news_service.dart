@@ -5,4 +5,5 @@ abstract class NewsService {
   Future<List<Article>> getHeadlines();
   Future<List<Article>> getNewsByCategory(String category);
   Future<List<Article>> getNewsFromSource(Source source);
+  Future<List<Article>> searchNews(String query);
 }
