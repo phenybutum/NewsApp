@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:newsapp/data/entities/article/article_model.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ArticleItem extends StatefulWidget {
   final Article article;
@@ -15,7 +16,9 @@ class ArticleItem extends StatefulWidget {
 class _ArticleItemState extends State<ArticleItem> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return InkWell(
+      onTap: () async =>  await _launchURL(widget.article.url),
+      child: Container(
         height: 250.h,
         width: 382.w,
         decoration: new BoxDecoration(
@@ -82,6 +85,11 @@ class _ArticleItemState extends State<ArticleItem> {
               ),
             ),
           ],
-        ));
+        ),
+      ),
+    );
   }
+
+  _launchURL(String url) async =>
+      await canLaunch(url) ? await launch(url, forceWebView: true) : throw 'Could not launch $url';
 }
