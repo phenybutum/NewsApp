@@ -26,7 +26,12 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 const baseApiEndpoint = 'https://newsapi.org/v2/';
 
 class App extends StatelessWidget {
+  Locale locale;
+  String staticLanguageCode;
+
   Widget build(BuildContext context) {
+    this.locale = EasyLocalization.of(context).locale;
+    staticLanguageCode = this.locale.languageCode;
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider<NavigationRepository>(
@@ -36,8 +41,8 @@ class App extends StatelessWidget {
             create: (context) =>
                 CategoriesRepository(MockCategoriesDataService())),
         RepositoryProvider<NewsRepository>(
-            create: (context) =>
-                NewsRepository(RESTNewsDataService(NewsAPI(baseApiEndpoint)))),
+            create: (context) => NewsRepository(RESTNewsDataService(
+                NewsAPI(baseApiEndpoint, this.staticLanguageCode)))),
         RepositoryProvider<SourcesRepository>(
             create: (context) => SourcesRepository(
                 RESTSourcesDataService(SourcesAPI(baseApiEndpoint)))),
@@ -69,6 +74,7 @@ class App extends StatelessWidget {
           allowFontScaling: true,
           builder: () => CupertinoApp(
             title: 'NewsApp',
+            debugShowCheckedModeBanner: false,
             localizationsDelegates: _localizationsDelegates(context),
             supportedLocales: EasyLocalization.of(context).supportedLocales,
             locale: EasyLocalization.of(context).locale,

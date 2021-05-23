@@ -10,10 +10,14 @@ const _headlines = 'top-headlines/';
 const _everything = 'everything/';
 
 class NewsAPI extends BaseRestApi {
-  NewsAPI(String baseApiEndPoint) : super(baseApiEndPoint);
+  final String locale;
+
+  NewsAPI(String baseApiEndPoint, this.locale) : super(baseApiEndPoint);
+
+  String setLocale() => this.locale == 'en' ? 'us' : this.locale;
 
   Future<ArticlesListResponse> getHeadlines() async {
-    Map<String, dynamic> body = {'country': 'us'};
+    Map<String, dynamic> body = {'country': setLocale()};
     try {
       var response = await dio.get(_headlines, queryParameters: body);
       return ResponseParser<ArticlesListResponse>()
@@ -38,7 +42,7 @@ class NewsAPI extends BaseRestApi {
   }
 
   Future<ArticlesListResponse> getHeadlinesFromCategory(String category) async {
-    Map<String, dynamic> body = {'category': category};
+    Map<String, dynamic> body = {'category': category, 'country': setLocale()};
     try {
       var response = await dio.get(_headlines, queryParameters: body);
       return ResponseParser<ArticlesListResponse>()
@@ -51,7 +55,7 @@ class NewsAPI extends BaseRestApi {
   }
 
   Future<ArticlesListResponse> searchNews(String query) async {
-    Map<String, dynamic> body = {'q': query};
+    Map<String, dynamic> body = {'q': query, 'language': this.locale};
     try {
       var response = await dio.get(_everything, queryParameters: body);
       return ResponseParser<ArticlesListResponse>()
